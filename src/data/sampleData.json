@@ -1,0 +1,100 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "username": "department_manager",
+        "password": "password123",
+        "email": "deptmanager@example.com",
+        "roles": ["Department Manager"]
+      },
+      {
+        "id": 2,
+        "username": "store_manager",
+        "password": "password456",
+        "email": "storemanager@example.com",
+        "roles": ["Store Manager"]
+      },
+      {
+        "id": 3,
+        "username": "both_manager",
+        "password": "password789",
+        "email": "bothmanager@example.com",
+        "roles": ["Department Manager", "Store Manager"]
+      }
+    ],
+    "inventory": [
+      {
+        "id": 101,
+        "productId": "ABC123",
+        "productName": "Widget",
+        "vendor": "Vendor A",
+        "mrp": 15.99,
+        "batchNumber": "B001",
+        "batchDate": "2023-08-01",
+        "quantity": 50,
+        "status": "Pending",
+        "requestedBy": "department_manager"
+      },
+      {
+        "id": 102,
+        "productId": "DEF456",
+        "productName": "Gadget",
+        "vendor": "Vendor B",
+        "mrp": 29.99,
+        "batchNumber": "B002",
+        "batchDate": "2023-08-05",
+        "quantity": 100,
+        "status": "Pending",
+        "requestedBy": "department_manager"
+      },
+      {
+        "id": 103,
+        "productId": "GHI789",
+        "productName": "Doodad",
+        "vendor": "Vendor C",
+        "mrp": 9.99,
+        "batchNumber": "B003",
+        "batchDate": "2023-08-10",
+        "quantity": 75,
+        "status": "Approved",
+        "requestedBy": "store_manager"
+      },
+      {
+        "id": 104,
+        "productId": "GHM790",
+        "productName": "CHECKRRAPR",
+        "vendor": "Vendor D",
+        "mrp": 49.99,
+        "batchNumber": "B004",
+        "batchDate": "2023-08-15",
+        "quantity": 54,
+        "status": "Pending Approval",
+        "requestedBy": "department_manager"
+      },
+      {
+        "id": 105,
+        "productId": "XYZ789",
+        "productName": "New Item 1",
+        "vendor": "Vendor E",
+        "mrp": 19.99,
+        "batchNumber": "B005",
+        "batchDate": "2023-08-20",
+        "quantity": 30,
+        "status": "Pending",
+        "requestedBy": "store_manager"
+      },
+      {
+        "id": 106,
+        "productId": "LMN456",
+        "productName": "New Item 2",
+        "vendor": "Vendor F",
+        "mrp": 24.99,
+        "batchNumber": "B006",
+        "batchDate": "2023-08-25",
+        "quantity": 45,
+        "status": "Pending",
+        "requestedBy": "department_manager"
+      }
+    ]
+  }
+  
