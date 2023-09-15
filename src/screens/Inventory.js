@@ -46,7 +46,7 @@ export const Inventory = () => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-  // userRoles == 'Store Manager' ? ()
+
 
   const removeItemFromInventory = async (itemId, userRoles) => {
     try {
@@ -260,8 +260,6 @@ export const Inventory = () => {
 
   const openUpdateModal = itemId => {
     setSelectedItemId(itemId);
-  
-    // Find the item in the inventory by its ID and set the initial values for the input fields
     const selectedItem = inventory.find(item => item.id === itemId);
     if (selectedItem) {
       setUpdatedItemName(selectedItem.productName || '');
@@ -402,7 +400,6 @@ export const Inventory = () => {
               placeholderTextColor={'black'}
             />
 
-            {/* Add input fields for other item details here */}
             <View style={{marginBottom:10}}>
             <Button title="Update" onPress={handleUpdateItem}  />
             </View>
