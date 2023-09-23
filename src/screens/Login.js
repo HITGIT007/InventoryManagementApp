@@ -16,31 +16,76 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import sampleData from '../data/sampleData.json';
+import axios from 'axios';
 export const LoginScreen = () => {
   const [role, setRole] = useState('');
+  // const [reqresemail, setreqresEmail] = useState('eve.holt@reqres.in');
+  // const [reqrespassword, setreqresPassword] = useState('cityslicka');
+  const [useremail, setuserEmail] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
 
  
 
-  const handleLogin = () => {
-    
+  useEffect(() => {
+    const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
 
-    const user = sampleData.users.find(
-        (user) => user.username === username && user.password === password
-      );
+    function isValidEmail(email) {
+      return emailRegex.test(email);
+    }
+
+    if (isValidEmail(username)) {
+      console.log(`${username} is a email.`);
+      setuserEmail(true)
+    } else {
+      console.log(`${username} is username and not email.`);
+    }
+    
+  }, [username]);
+
+  const handleLogin = async () => {
+    
+    if (useremail){
+      try {
+        let reqresemail = 'eve.holt@reqres.in'
+        let reqrespassword = 'cityslicka'
+        console.log("Username or Email", reqresemail, reqrespassword)
+        const response = await axios.post('https://reqres.in/api/login', {
+          email : reqresemail,
+          password  : reqrespassword,
+        });
   
-      if (user) {
-        AsyncStorage.setItem('userRole', JSON.stringify(user.roles));
-        if (user.roles.includes(role)) {
-          navigation.navigate('Home', { roles: user.roles, username:user.username, email:user.email  });
-        } else {
-          Alert.alert('You selected an incorrect role for this user.');
+        if (response.status === 200) {
+          AsyncStorage.setItem('userRole', JSON.stringify(['Store Manager']));
+          navigation.navigate('Home', { roles: ['Store Manager'], username:username, email:username  });
         }
-      } else {
-        Alert.alert('Invalid username or password. Please try again.');
+      } catch (error) {
+        console.error('Login Error:', error);
       }
+    }
+   else{
+    const user = sampleData.users.find(
+      (user) => user.username === username && user.password === password
+    );
+
+    if (user) {
+      AsyncStorage.setItem('userRole', JSON.stringify(user.roles));
+      if (user.roles.includes(role)) {
+        navigation.navigate('Home', { roles: user.roles, username:user.username, email:user.email  });
+      } else {
+        Alert.alert('You selected an incorrect role for this user.');
+      }
+    } else {
+      Alert.alert('Invalid username or password. Please try again.');
+    }
+   }
+
+
+
+
+
+    
   };
 
   return (
@@ -109,7 +154,7 @@ export const LoginScreen = () => {
 
       <View style={{marginTop: 20, width: '100%', alignItems: 'center'}}>
         <TextInput
-          placeholder="Username"
+          placeholder="Username / Email"
           onChangeText={text => setUsername(text)}
           style={styles.input}
           placeholderTextColor="#000"
