@@ -109,6 +109,21 @@ export const Home = ({route}) => {
         <Text style={{color: 'red', fontSize: 14}}>{route.params.email}</Text>
       </View>
       <View style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
+      <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Vendor');
+          }}
+          style={{
+            backgroundColor: 'orange',
+            width: wp(80),
+            height: 50,
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 5,
+            marginBottom:10
+          }}>
+          <Text style={{color: 'black', fontSize: 14}}>Vendor List</Text>
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             navigation.navigate('Inventory');

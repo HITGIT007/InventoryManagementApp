@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LoginScreen } from './src/screens/Login';
 import { Home } from './src/screens/Home';
 import { Inventory } from './src/screens/Inventory';
+import Vendor from './src/screens/Vendor';
 
 
 
@@ -25,6 +26,7 @@ function App(): JSX.Element {
         <Stack.Screen name='Inventory' component={Inventory} options={{
           headerShown:true
         }} />
+        <Stack.Screen name="Vendor" component={Vendor} />
       </Stack.Navigator>
     </NavigationContainer>
   );

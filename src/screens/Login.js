@@ -16,7 +16,8 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import sampleData from '../data/sampleData.json';
-import axios from 'axios';
+
+import { loginAxiosReqres } from '../data/AxiosApiReques';
 export const LoginScreen = () => {
   const [role, setRole] = useState('');
   // const [reqresemail, setreqresEmail] = useState('eve.holt@reqres.in');
@@ -47,21 +48,26 @@ export const LoginScreen = () => {
   const handleLogin = async () => {
     
     if (useremail){
-      try {
-        let reqresemail = 'eve.holt@reqres.in'
-        let reqrespassword = 'cityslicka'
-        console.log("Username or Email", reqresemail, reqrespassword)
-        const response = await axios.post('https://reqres.in/api/login', {
-          email : reqresemail,
-          password  : reqrespassword,
-        });
+      // try {
+      //   let reqresemail = 'eve.holt@reqres.in'
+      //   let reqrespassword = 'cityslicka'
+      //   console.log("Username or Email", reqresemail, reqrespassword)
+      //   const response = await axios.post('https://reqres.in/api/login', {
+      //     email : reqresemail,
+      //     password  : reqrespassword,
+      //   });
   
-        if (response.status === 200) {
-          AsyncStorage.setItem('userRole', JSON.stringify(['Store Manager']));
-          navigation.navigate('Home', { roles: ['Store Manager'], username:username, email:username  });
-        }
-      } catch (error) {
-        console.error('Login Error:', error);
+      //   if (response.status === 200) {
+      //     AsyncStorage.setItem('userRole', JSON.stringify(['Store Manager']));
+      //     navigation.navigate('Home', { roles: ['Store Manager'], username:username, email:username  });
+      //   }
+      // } catch (error) {
+      //   console.error('Login Error:', error);
+      // }
+      const res = await loginAxiosReqres(username, password);
+      if (res.status === 200) {
+        AsyncStorage.setItem('userRole', JSON.stringify(['Store Manager']));
+        navigation.navigate('Home', { roles: ['Store Manager'], username:username, email:username  });
       }
     }
    else{
