@@ -66,8 +66,10 @@ export const LoginScreen = () => {
       // }
       const res = await loginAxiosReqres(username, password);
       if (res.status === 200) {
-        AsyncStorage.setItem('userRole', JSON.stringify(['Store Manager']));
-        navigation.navigate('Home', { roles: ['Store Manager'], username:username, email:username  });
+        await AsyncStorage.setItem('userRole', JSON.stringify(['Store Manager']));
+        await AsyncStorage.setItem("token", res.data.token);
+        role == 'Store Manager' ?  navigation.navigate('Home', { roles: ['Store Manager'] }) :  navigation.navigate('Home', { roles: ['Department Manager'] })
+       
       }
     }
    else{
@@ -78,6 +80,7 @@ export const LoginScreen = () => {
     if (user) {
       AsyncStorage.setItem('userRole', JSON.stringify(user.roles));
       if (user.roles.includes(role)) {
+        await AsyncStorage.setItem("token", '3124524563546dummytoken12469654235');
         navigation.navigate('Home', { roles: user.roles, username:user.username, email:user.email  });
       } else {
         Alert.alert('You selected an incorrect role for this user.');

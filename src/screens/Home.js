@@ -24,7 +24,7 @@ export const Home = ({route}) => {
 
   const navigation = useNavigation();
 
-  const userRole = route.params.roles;
+  //const userRole = route.params.roles;
 
   useEffect(() => {
     const disableBackButton = () => {
@@ -90,7 +90,7 @@ export const Home = ({route}) => {
 
   const handleLogout = async () => {
     try {
-      await AsyncStorage.removeItem('userRole');
+      await AsyncStorage.clear();
 
       navigation.navigate('Login');
     } catch (error) {
@@ -103,10 +103,10 @@ export const Home = ({route}) => {
     <SafeAreaView style={styles.container}>
       <View style={{position: 'absolute', top: 10, left: 10}}>
         <Text style={{color: 'black', fontSize: 14}}>WELCOME</Text>
-        <Text style={{color: 'red', fontSize: 14}}>
-          {route.params.username}
-        </Text>
-        <Text style={{color: 'red', fontSize: 14}}>{route.params.email}</Text>
+        {/* <Text style={{color: 'red', fontSize: 14}}>
+          {route.params.email}
+        </Text> */}
+        {/* <Text style={{color: 'red', fontSize: 14}}>{route.params.email}</Text> */}
       </View>
       <View style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
       <TouchableOpacity
